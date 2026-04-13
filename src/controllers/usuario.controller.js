@@ -1,41 +1,41 @@
-const usuarioService = require('../services/usuario.service');
+const tutoreservice = require('../services/tutor.service');
 
-// GET /usuarios
-const listarUsuarios = async (req, res) => {
+// GET /tutores
+const listartutores = async (req, res) => {
   try {
-    const usuarios = await usuarioService.listarTodosUsuarios();
-    res.status(200).json({ total: usuarios.length, usuarios });
+    const tutores = await tutoreservice.listarTodostutores();
+    res.status(200).json({ total: tutores.length, tutores });
   } catch (erro) {
-    res.status(500).json({ erro: 'Erro interno ao listar usuarios.' });
+    res.status(500).json({ erro: 'Erro interno ao listar tutores.' });
   }
 };
 
-// GET /usuarios/:id — Busca usuario por ID
-const buscarUsuarioPorId = async (req, res) => {
+// GET /tutores/:id — Busca tutor por ID
+const buscartutorPorId = async (req, res) => {
   try {
     const { id } = req.params;
-    const usuario = await usuarioService.buscarUsuarioPorId(id);
+    const tutor = await tutoreservice.buscartutorPorId(id);
 
-    if (!usuario) {
+    if (!tutor) {
       return res.status(404).json({ erro: `Usuário ${id} não encontrado.` });
     }
 
-    res.status(200).json({ usuario });
+    res.status(200).json({ tutor });
   } catch (erro) {
     res.status(500).json({ erro: 'Erro interno ao buscar usuário.' });
   }
 };
 
-// POST /usuarios — Cadastra novo usuario
-const criarUsuario = async (req, res) => {
+// POST /tutores — Cadastra novo tutor
+const criartutor = async (req, res) => {
   try {
     const { nome, email } = req.body;
-    const novoUsuario = await usuarioService.criarUsuario({ nome, email });
+    const novotutor = await tutoreservice.criartutor({ nome, email });
 
     // 201 = Created — status correto para criação bem-sucedida
     res.status(201).json({
       mensagem: 'Usuário cadastrado com sucesso!',
-      usuario: novoUsuario,
+      tutor: novotutor,
     });
   } catch (erro) {
     // Se o Service lançou um erro de validação, retornamos 400
@@ -43,4 +43,4 @@ const criarUsuario = async (req, res) => {
   }
 };
 
-module.exports = { listarUsuarios, buscarUsuarioPorId, criarUsuario };
+module.exports = { listartutores, buscartutorPorId, criartutor };

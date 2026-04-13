@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 // Importação das Rotas
 const livroRoute = require('./livro.route');
-const usuarioRoute = require('./usuario.route');
+const tutorRoute = require('./tutor.route');
 // Importação Seletiva de Middlewares
 const { autenticar, validarContentType } = require('../middlewares/main.middleware');
 
@@ -18,7 +18,7 @@ router.use(validarContentType);
 
 // 3. Rotas Protegidas
 router.use('/livros', livroRoute);
-router.use('/usuarios', usuarioRoute);
+router.use('/tutores', tutorRoute);
 
 // 4. Rota 404 - Caso nenhuma rota acima seja encontrada
 router.use((req, res) => {

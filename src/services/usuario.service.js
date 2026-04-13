@@ -1,4 +1,4 @@
-const usuarios = [
+const tutores = [
   {
     id: 1,
     nome: 'Anderson Dutra',
@@ -16,29 +16,29 @@ const usuarios = [
   },
 ];
 
-// Lista todos os usuarios
-const listarTodosUsuarios = async () => {
-  return usuarios;
+// Lista todos os tutores
+const listarTodostutores = async () => {
+  return tutores;
 };
 
-// Busca um usuario específico pelo ID
-const buscarUsuarioPorId = async (id) => {
-  const usuario = usuarios.find((item) => item.id === Number(id));
-  return usuario || null;
+// Busca um tutor específico pelo ID
+const buscartutorPorId = async (id) => {
+  const tutor = tutores.find((item) => item.id === Number(id));
+  return tutor || null;
 };
 
-// Criar um novo usuario
-const criarUsuario = async ({ nome, email }) => {
+// Criar um novo tutor
+const criartutor = async ({ nome, email }) => {
   if (!nome || !email) {
     throw new Error('Nome e e-mail são obrigatórios.');
   }
-  const novoUsuario = {
-    id: usuarios.length + 1,
+  const novotutor = {
+    id: tutores.length + 1,
     nome,
     email,
   };
-  usuarios.push(novoUsuario);
-  return novoUsuario;
+  tutores.push(novotutor);
+  return novotutor;
 };
 
-module.exports = { listarTodosUsuarios, buscarUsuarioPorId, criarUsuario };
+module.exports = { listarTodostutores, buscartutorPorId, criartutor };
