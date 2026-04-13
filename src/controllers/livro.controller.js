@@ -2,49 +2,49 @@
 // Extrai dados do req, chama o Service e formata a resposta com res.
 // Nunca contém regra de negócio — apenas orquestração.
 
-const livroService = require('../services/livro.service');
+const animalService = require('../services/animal.service');
 
-// GET /livros — Lista todos os livros
-const listarLivros = async (req, res) => {
+// GET /animals — Lista todos os animals
+const listaranimals = async (req, res) => {
   try {
-    const livros = await livroService.listarTodosLivros();
-    res.status(200).json({ total: livros.length, livros });
+    const animals = await animalService.listarTodosanimals();
+    res.status(200).json({ total: animals.length, animals });
   } catch (erro) {
-    res.status(500).json({ erro: 'Erro interno ao listar livros.' });
+    res.status(500).json({ erro: 'Erro interno ao listar animals.' });
   }
 };
 
-// GET /livros/:id — Busca livro por ID
-const buscarLivroPorId = async (req, res) => {
+// GET /animals/:id — Busca animal por ID
+const buscaranimalPorId = async (req, res) => {
   try {
     // Extrai o parâmetro da URL — essa é a responsabilidade do Controller
     const { id } = req.params;
-    const livro = await livroService.buscarLivroPorId(id);
+    const animal = await animalService.buscaranimalPorId(id);
 
-    // Se o Service retornou null, o livro não existe
-    if (!livro) {
+    // Se o Service retornou null, o animal não existe
+    if (!animal) {
       return res
         .status(404)
-        .json({ erro: `Livro ${id} não encontrado no acervo.` });
+        .json({ erro: `animal ${id} não encontrado no acervo.` });
     }
 
-    res.status(200).json({ livro });
+    res.status(200).json({ animal });
   } catch (erro) {
-    res.status(500).json({ erro: 'Erro interno ao buscar livro.' });
+    res.status(500).json({ erro: 'Erro interno ao buscar animal.' });
   }
 };
 
-// POST /livros — Cadastra novo livro
-const criarLivro = async (req, res) => {
+// POST /animals — Cadastra novo animal
+const criaranimal = async (req, res) => {
   try {
     // Extrai os dados do corpo da requisição
     const { titulo, autor } = req.body;
-    const novoLivro = await livroService.criarLivro({ titulo, autor });
+    const novoanimal = await animalService.criaranimal({ titulo, autor });
 
     // 201 = Created — status correto para criação bem-sucedida
     res.status(201).json({
-      mensagem: 'Livro cadastrado no acervo com sucesso!',
-      livro: novoLivro,
+      mensagem: 'animal cadastrado no acervo com sucesso!',
+      animal: novoanimal,
     });
   } catch (erro) {
     // Se o Service lançou um erro de validação, retornamos 400
@@ -52,4 +52,4 @@ const criarLivro = async (req, res) => {
   }
 };
 
-module.exports = { listarLivros, buscarLivroPorId, criarLivro };
+module.exports = { listaranimals, buscaranimalPorId, criaranimal };

@@ -2,10 +2,10 @@
 // Nada mais, nada menos. Sem lógica, sem processamento.
 
 const router = require('express').Router();
-const livroController = require('../controllers/livro.controller');
+const animalController = require('../controllers/animal.controller');
 
-router.get('/', livroController.listarLivros);
-router.get('/:id', livroController.buscarLivroPorId);
-router.post('/', livroController.criarLivro);
+router.get('/', animalController.listaranimals);
+router.get('/:id', animalController.buscaranimalPorId);
+router.post('/', animalController.criaranimal);
 
 module.exports = router;

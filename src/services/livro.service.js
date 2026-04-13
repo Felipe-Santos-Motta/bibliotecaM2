@@ -22,33 +22,33 @@ const acervo = [
   },
 ];
 
-// Lista todos os livros do acervo
-const listarTodosLivros = async () => {
+// Lista todos os animals do acervo
+const listarTodosanimals = async () => {
   return acervo;
 };
 
-// Busca um livro específico pelo ID
-const buscarLivroPorId = async (id) => {
-  const livro = acervo.find((item) => item.id === Number(id));
+// Busca um animal específico pelo ID
+const buscaranimalPorId = async (id) => {
+  const animal = acervo.find((item) => item.id === Number(id));
   // Regra de negócio: se não existe, retorna null.
   // O Controller decide o que fazer com o null.
-  return livro || null;
+  return animal || null;
 };
 
-// Criar um novo livro no acervo
-const criarLivro = async ({ titulo, autor }) => {
+// Criar um novo animal no acervo
+const criaranimal = async ({ titulo, autor }) => {
   // Regra de negócio: título e autor são obrigatórios
   if (!titulo || !autor) {
     throw new Error('Título e autor são obrigatórios.');
   }
-  const novoLivro = {
+  const novoanimal = {
     id: acervo.length + 1,
     titulo,
     autor,
     disponivel: true,
   };
-  acervo.push(novoLivro);
-  return novoLivro;
+  acervo.push(novoanimal);
+  return novoanimal;
 };
 
-module.exports = { listarTodosLivros, buscarLivroPorId, criarLivro };
+module.exports = { listarTodosanimals, buscaranimalPorId, criaranimal };
